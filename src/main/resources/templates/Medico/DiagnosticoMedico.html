@@ -1,0 +1,35 @@
+<div th:fragment="diagnosticosFragment" class="card shadow-sm p-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="text-primary">🧾 Diagnósticos Médico</h4>
+    <button class="btn btn-outline-success btn-sm" onclick="cargarVista('Medico', 'RegistrarDiagnostico')">
+      ➕ Nuevo Registro
+    </button>
+  </div>
+
+  <div th:if="${mensaje}" class="alert alert-warning" th:text="${mensaje}"></div>
+
+  <div th:if="${#lists.isEmpty(diagnosticos)}" class="alert alert-info">
+    Aún no has registrado ningún diagnóstico.
+  </div>
+
+  <div class="table-responsive" th:if="${!#lists.isEmpty(diagnosticos)}">
+    <table class="table table-bordered table-striped align-middle">
+      <thead class="table-light">
+      <tr>
+        <th>📅 Fecha</th>
+        <th>👤 Paciente</th>
+        <th>💬 Diagnóstico</th>
+        <th>💊 Tratamiento</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="d : ${diagnosticos}">
+        <td th:text="${#temporals.format(d.fecha, 'dd/MM/yyyy')}"></td>
+        <td th:text="${d.paciente.nombre}"></td>
+        <td th:text="${d.diagnostico}"></td>
+        <td th:text="${d.tratamiento}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

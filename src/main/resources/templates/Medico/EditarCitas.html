@@ -1,0 +1,43 @@
+<div th:fragment="editarCitaFragment" class="card shadow-sm p-4">
+    <h4 class="mb-4 text-primary">Editar Cita</h4>
+
+    <form id="form-cita" th:action="@{/Medico/EditarCita}" th:object="${cita}" method="post"
+        onsubmit="enviarFormularioParcial(event, 'form-cita')">
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="mb-3">
+            <label for="pacienteId" class="form-label">👤 Paciente</label>
+            <input type="text" th:value="${cita.paciente.nombre + ' ' + cita.paciente.apellidos}" class="form-control"
+                disabled />
+            <input type="hidden" th:field="*{paciente.id}" />
+        </div>
+
+        <div class="mb-3">
+            <label for="fecha" class="form-label">📆 Fecha</label>
+            <input id="fecha" type="date" name="fecha" th:value="${#temporals.format(cita.fecha, 'yyyy-MM-dd')}" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="hora" class="form-label">⏰ Hora</label>
+            <input id="hora" type="time" name="hora" th:value="${#temporals.format(cita.hora, 'HH:mm')}" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label for="estado" class="form-label">Estado</label>
+            <select id="estado" th:field="*{estado}" class="form-select" required>
+                <option value="Pendiente" th:selected="${cita.estado == 'Pendiente'}">Pendiente</option>
+                <option value="Confirmada" th:selected="${cita.estado == 'Confirmada'}">Confirmada</option>
+                <option value="Cancelada" th:selected="${cita.estado == 'Cancelada'}">Cancelada</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="observaciones" class="form-label">📝 Observaciones</label>
+            <textarea id="observaciones" th:field="*{observaciones}" class="form-control" rows="3" disabled></textarea>
+        </div>
+
+        <div class="d-flex justify-content-end gap-2">
+            <button type="submit" class="btn btn-success">✅ Editar</button>
+            <button type="button" class="btn btn-outline-secondary"
+                onclick="cargarVista('Medico', 'CitasMedico')">Cancelar</button>
+        </div>
+    </form>
+</div>

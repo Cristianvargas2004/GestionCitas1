@@ -1,0 +1,43 @@
+<div th:fragment="usuariosFragment" class="card shadow-sm p-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="text-primary mb-0">Lista de Usuarios</h4>
+        <button class="btn btn-primary" onclick="cargarVista('Admin', 'FormUsuario')">
+            <span>+ Nuevo Usuario</span>
+        </button>
+    </div>
+
+    <div th:if="${eliminado}" class="alert alert-success" th:text="${eliminado}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="u : ${usuarios}">
+            <td th:text="${u.username}">Nombre de Usuario</td>
+            <td th:text="${u.nombre}">Nombre</td>
+            <td th:text="${u.email}">Email</td>
+            <td th:text="${u.rol}">Rol</td>
+            <td>
+                <form id="delete-medico"
+                      th:action="|Admin/EliminarUsuario/${u.id}|"
+                      method="post"
+                      onsubmit="return confirmarYEnviar(event, 'delete-medico')">
+                    <button type="button" class="btn btn-sm btn-warning me-1"
+                            th:onclick="|cargarVista('Admin', 'EditarUsuario/${u.id}')|">
+                        Editar
+                    </button>
+                    <button type="submit" class="btn btn-sm btn-danger"> Eliminar </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

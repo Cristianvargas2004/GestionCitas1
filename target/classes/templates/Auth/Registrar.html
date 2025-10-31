@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrarse</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/styles.css" rel="stylesheet">
+</head>
+<style>
+  body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+  }
+
+  .registro-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+  }
+
+  .registro-card {
+      width: 100%;
+      max-width: 600px;
+  }
+</style>
+<body class="dark-mode">
+<div class="registro-wrapper">
+  <div class="card registro-card shadow-sm p-4">
+    <h3 class="mb-4 text-primary text-center">Registrarse como Paciente</h3>
+
+    <!-- Mensaje de alerta -->
+    <div th:if="${mensaje}" class="alert alert-warning" th:text="${mensaje}"></div>
+
+    <!-- Formulario -->
+    <form th:action="@{/Auth/Registrar}" th:object="${paciente}" method="post">
+
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" id="nombre" th:field="*{nombre}" class="form-control" maxlength="100" required />
+        <div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+      </div>
+
+      <div class="mb-3">
+        <label for="apellidos" class="form-label">Apellidos</label>
+        <input type="text" id="apellidos" th:field="*{apellidos}" maxlength="100" class="form-control" required />
+        <div class="text-danger" th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></div>
+      </div>
+
+      <div class="mb-3">
+        <label for="dni" class="form-label">DNI</label>
+        <input type="text" id="dni" th:field="*{dni}" class="form-control" maxlength="8" required />
+        <div class="text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
+      </div>
+
+      <div class="mb-3">
+        <label for="telefono" class="form-label">Teléfono</label>
+        <input type="text" id="telefono" th:field="*{telefono}" maxlength="9" class="form-control" />
+        <div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Correo Electrónico</label>
+        <input type="email" id="email" th:field="*{email}" maxlength="100" class="form-control" required />
+        <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+      </div>
+
+      <div class="mb-3">
+        <label for="username" class="form-label">Nombre de Usuario</label>
+        <input type="text" id="username" th:field="*{username}" maxlength="100" class="form-control" required />
+        <div class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" id="password" th:field="*{password}" maxlength="100" class="form-control" required />
+        <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+      </div>
+
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary">Registrarse</button>
+        <a th:href="@{/Auth/Acceder}" class="btn btn-outline-secondary">¿Ya tienes cuenta? Iniciar sesión</a>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<div th:fragment="reservarCitaFragment" class="card shadow-sm p-4">
+  <h4 class="mb-4 text-primary">📅 Reservar Nueva Cita</h4>
+
+  <form id="form-cita"
+        th:action="@{/Paciente/ReservarCita}"
+        th:object="${cita}"
+        method="post"
+        onsubmit="enviarFormularioParcial(event, 'form-cita')">
+
+    <div class="mb-3">
+      <label for="medicoId" class="form-label">🩺 Médico</label>
+      <select id="medicoId" th:field="*{medico.id}" class="form-select" required>
+        <option value="">Seleccione un médico</option>
+        <option th:each="medico : ${medicos}"
+                th:value="${medico.id}"
+                th:text="${medico.nombre + ' - ' + medico.especialidad}"></option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="fecha" class="form-label">📆 Fecha</label>
+      <input id="fecha" type="date" name="fecha" th:value="${#temporals.format(cita.fecha, 'yyyy-MM-dd')}" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="hora" class="form-label">⏰ Hora</label>
+      <input id="hora" type="time" name="hora" th:value="${#temporals.format(cita.hora, 'HH:mm')}" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="observaciones" class="form-label">📝 Observaciones</label>
+      <textarea id="observaciones" th:field="*{observaciones}" class="form-control" rows="3"
+                placeholder="Opcional..."></textarea>
+    </div>
+
+    <div class="d-flex justify-content-end gap-2">
+      <button type="submit" class="btn btn-success">✅ Reservar</button>
+      <button type="button" class="btn btn-outline-secondary" onclick="cargarVista('Paciente', 'MisCitas')">Cancelar</button>
+    </div>
+  </form>
+</div>

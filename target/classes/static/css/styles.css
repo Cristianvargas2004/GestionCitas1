@@ -1,0 +1,193 @@
+/* ========== MODO OSCURO ========== */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: inherit;
+}
+
+
+/* Fondo general del cuerpo */
+body.dark-mode {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+.text-muted {
+    --bs-text-opacity: 1;
+    color: #6c757d !important;
+}
+
+    /* Tarjetas */
+    body.dark-mode .card {
+        background-color: #1e1e1e;
+        color: #f0f0f0;
+        border: 1px solid #333;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.05);
+    }
+
+    /* Formulario y entradas */
+    body.dark-mode .form-control,
+    body.dark-mode .form-select,
+    body.dark-mode input,
+    body.dark-mode textarea {
+        background-color: #1f1f1f;
+        color: #ffffff;
+        border: 1px solid #444;
+    }
+
+        body.dark-mode .form-control::placeholder,
+        body.dark-mode input::placeholder,
+        body.dark-mode textarea::placeholder {
+            color: #aaa;
+        }
+
+    /* Botón principal (modo oscuro) - más sobrio */
+    body.dark-mode .btn-primary {
+        background-color: #00a6b8;
+        border-color: #008f9e;
+        color: #fff;
+        transition: all 0.3s ease;
+    }
+
+        body.dark-mode .btn-primary:hover {
+            background-color: #008f9e;
+            border-color: #007582;
+            color: #fff;
+        }
+
+    /* Botón secundario */
+    body.dark-mode .btn-secondary {
+        background-color: #555;
+        color: #fff;
+        border-color: #777;
+    }
+
+        body.dark-mode .btn-secondary:hover {
+            background-color: #666;
+            border-color: #888;
+        }
+
+    /* Tablas */
+    body.dark-mode .table {
+        background-color: transparent;
+        color: #fff;
+    }
+
+    body.dark-mode .table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(40, 40, 40, 0.85);
+    }
+
+    body.dark-mode .table-striped tbody tr:nth-of-type(even) {
+        background-color: rgba(30, 30, 30, 0.85);
+    }
+
+    body.dark-mode .table th,
+    body.dark-mode .table td {
+        color: #e0e0e0;
+    }
+
+    /* Sidebar personalizado en modo oscuro */
+    body.dark-mode .dark-mode-sidebar {
+        background-color: #1c1c1c !important;
+        color: #e0e0e0;
+    }
+
+        body.dark-mode .dark-mode-sidebar a.nav-link {
+            color: #e0e0e0 !important;
+            font-weight: 500;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 0.4rem;
+        }
+
+            body.dark-mode .dark-mode-sidebar a.nav-link:hover,
+            body.dark-mode .dark-mode-sidebar a.nav-link.active {
+                background-color: #2a2a2a;
+                color: #00eaff !important;
+                text-shadow: 0 0 3px #00eaff50;
+            }
+
+    /* Contenido principal */
+    body.dark-mode .dark-mode-main {
+        background-color: #1a1a1a !important;
+        color: #e0e0e0 !important;
+    }
+
+    /* Botón flotante para cambiar tema */
+    body.dark-mode #btn-tema {
+        background: linear-gradient(145deg, #2e2e2e, #1a1a1a);
+        color: #fff;
+        box-shadow: 0 0 10px #00f0ff70;
+    }
+
+        body.dark-mode #btn-tema:hover {
+            box-shadow: 0 0 20px #00eaff;
+        }
+
+    /* Fondo oscuro completo para la vista de login */
+    body.dark-mode .container,
+    body.dark-mode .container-fluid {
+        background-color: #121212 !important;
+    }
+
+    /* Login: sombra sutil y sin bordes */
+    body.dark-mode .card.shadow,
+    body.dark-mode .card.shadow-sm {
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.08);
+        border: none;
+    }
+
+    /* Asegura contraste en textos internos del login */
+    body.dark-mode .card h3,
+    body.dark-mode .form-label,
+    body.dark-mode .form-check-label {
+        color: #e0e0e0 !important;
+    }
+
+
+    /* ========= TABLAS EN MODO OSCURO ========= */
+    body.dark-mode .table {
+        background-color: transparent;
+        color: #f0f0f0;
+        border-color: #444;
+    }
+
+        body.dark-mode .table th,
+        body.dark-mode .table td {
+            color: #f0f0f0;
+            border-color: #444;
+            background-color: transparent;
+        }
+
+    /* Estilo para filas alternadas */
+    body.dark-mode .table-striped > tbody > tr:nth-of-type(odd) {
+        background-color: rgba(50, 50, 60, 0.8);
+    }
+
+    body.dark-mode .table-striped > tbody > tr:nth-of-type(even) {
+        background-color: rgba(30, 30, 40, 0.8);
+    }
+
+    /* Encabezado más distinguible */
+    body.dark-mode .table thead {
+        background-color: #1e1e1e;
+        border-bottom: 1px solid #555;
+    }
+
+        body.dark-mode .table thead th {
+            color: #00eaff;
+            font-weight: 600;
+            text-shadow: 0 0 1px #00eaff80;
+        }
+
+    /* Bordes suaves y modernos */
+    body.dark-mode .table-bordered {
+        border: 1px solid #444;
+    }
+
+        body.dark-mode .table-bordered td,
+        body.dark-mode .table-bordered th {
+            border: 1px solid #444;
+        }

@@ -1,0 +1,40 @@
+<div th:fragment="perfilMedicoFragment" class="card shadow-sm p-4">
+    <h4 class="mb-4 text-primary">👤 Mi Perfil</h4>
+
+    <div th:if="${mensaje != null}" class="alert alert-success" th:text="${mensaje}"></div>
+
+    <form id="form-perfil-medico"
+          th:action="@{/Medico/ActualizarPerfil}"
+          th:object="${medico}"
+          method="post"
+          onsubmit="enviarFormularioParcial(event, 'form-perfil-medico')">
+
+        <!-- Campo oculto obligatorio -->
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre completo</label>
+            <input id="nombre" type="text" th:field="*{nombre}" maxlength="100" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="especialidad" class="form-label">Especialidad</label>
+            <input id="especialidad" type="text" th:field="*{especialidad}" maxlength="100" class="form-control" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input id="telefono" type="text" th:field="*{telefono}" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input id="email" type="email" th:field="*{email}" maxlength="100" class="form-control" required />
+        </div>
+
+        <div class="d-flex justify-content-end gap-2">
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <button type="button" class="btn btn-secondary" onclick="cargarVista('Medico', 'PerfilMedico')">Cancelar</button>
+        </div>
+    </form>
+</div>

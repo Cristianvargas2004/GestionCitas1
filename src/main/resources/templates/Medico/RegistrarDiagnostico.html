@@ -1,0 +1,51 @@
+<div th:fragment="registrarDiagnosticoFragment" th:object="${form}" class="card shadow-sm p-4">
+  <h4 class="mb-4 text-primary">📝 Registrar Diagnóstico</h4>
+
+  <form id="form-diagnostico"
+        th:action="@{/Medico/RegistrarDiagnostico}"
+        method="post"
+        onsubmit="enviarFormularioParcial(event, 'form-diagnostico')">
+
+    <!-- Paciente -->
+    <div class="mb-3">
+      <label for="pacienteId" class="form-label fw-semibold">👤 Paciente</label>
+      <select id="pacienteId" th:field="*{paciente.id}" class="form-select" required>
+        <option value="">Seleccione un paciente...</option>
+        <option th:each="paciente : ${pacientes}"
+                th:value="${paciente.id}"
+                th:text="${paciente.nombre + ' ' + paciente.apellidos}"></option>
+      </select>
+    </div>
+
+    <!-- Diagnóstico -->
+    <div class="mb-3">
+      <label for="diagnostico" class="form-label fw-semibold">💬 Diagnóstico</label>
+      <textarea id="diagnostico"
+                name="diagnostico"
+                class="form-control"
+                rows="3"
+                placeholder="Describa el diagnóstico..."
+                th:field="*{diagnostico}"
+                required></textarea>
+    </div>
+
+    <!-- Tratamiento -->
+    <div class="mb-3">
+      <label for="tratamiento" class="form-label fw-semibold">💊 Tratamiento</label>
+      <textarea id="tratamiento"
+                name="tratamiento"
+                class="form-control"
+                rows="3"
+                placeholder="Indique el tratamiento..."
+                th:field="*{tratamiento}"
+                required></textarea>
+    </div>
+
+    <!-- Botones -->
+    <div class="d-flex justify-content-end gap-2">
+      <button type="submit" class="btn btn-success">💾 Guardar</button>
+      <button type="button" class="btn btn-outline-secondary"
+              onclick="cargarVista('Medico', 'Diagnosticos')">Cancelar</button>
+    </div>
+  </form>
+</div>

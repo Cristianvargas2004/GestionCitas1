@@ -1,0 +1,44 @@
+<div th:fragment="citasFragment" class="card shadow-sm p-4">
+  <h4 class="mb-4 text-primary">📋 Citas Programadas</h4>
+  <div class="alert alert-success" th:if="${mensaje}" th:text="${mensaje}"></div>
+  <div th:if="${#lists.isEmpty(citas)}" class="alert alert-info">
+    No tienes citas programadas actualmente.
+  </div>
+
+  <div class="table-responsive" th:if="${!#lists.isEmpty(citas)}">
+    <table class="table table-striped table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th>Paciente</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Estado</th>
+          <th>Observaciones</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="c : ${citas}">
+          <td th:text="${c.paciente.nombre}"></td>
+          <td th:text="${#temporals.format(c.fecha, 'dd/MM/yyyy')}"></td>
+          <td th:text="${c.hora}"></td>
+          <td>
+            <span class="badge"
+                  th:classappend="${c.estado.name() == 'Confirmada' ? ' bg-success' :
+                                   (c.estado.name() == 'Cancelada' ? ' bg-danger' :
+                                   ' bg-warning text-dark')}"
+                  th:text="${c.estado}">
+            </span>
+          </td>
+          <td th:utext="${#strings.isEmpty(c.observaciones) ? '<em>Sin observaciones</em>' : c.observaciones}"></td>
+          <td>
+            <button type="button" class="btn btn-sm btn-warning me-1"
+              th:onclick="|cargarVista('Medico', 'EditarCitas/${c.id}')|">
+              Editar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

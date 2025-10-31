@@ -1,0 +1,44 @@
+<div th:fragment="formUsuarioFragment" class="card shadow-sm p-4">
+    <h4 class="mb-4 text-primary" th:text="${isEdit} ? 'Editar Usuario' : 'Registrar Nuevo Usuario'"></h4>
+    <div th:if="${mensaje}" class="alert alert-warning" th:text="${mensaje}"></div>
+    <form id="form-usuario"
+          th:action="@{${isEdit} ? '/Admin/EditarUsuario' : '/Admin/CrearUsuario'}"
+          method="post"
+          onsubmit="enviarFormularioParcial(event, 'form-usuario')"
+          th:object="${usuario}">
+
+        <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{rol}">
+
+        <div class="mb-3">
+            <label for="username" class="form-label">Nombre de Usuario</label>
+            <input type="text" th:field="*{username}" class="form-control" required />
+            <div class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" th:field="*{password}" class="form-control" required />
+            <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre completo</label>
+            <input type="text" th:field="*{nombre}" class="form-control" required />
+            <div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input type="email" th:field="*{email}" class="form-control" required />
+            <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
+
+        <div class="d-flex justify-content-end gap-2">
+            <button type="submit" class="btn btn-primary"
+                    th:text="${isEdit} ? 'Guardar Cambios' : 'Registrar'">
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="cargarVista('Admin', 'Usuarios')">Cancelar</button>
+        </div>
+    </form>
+</div>
